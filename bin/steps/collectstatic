@@ -21,8 +21,3 @@ MANAGE_FILE=${MANAGE_FILE:-fakepath}
 
 # Ensure that Django is explicitily specified in requirments.txt
 pip-grep -s requirements.txt django Django && DJANGO_INSTALLED=1
-
-bpwatch start collectstatic  # metrics collection
-
-
-bpwatch stop collectstatic  # metrics collection
