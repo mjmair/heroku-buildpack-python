@@ -9,12 +9,15 @@ runtime-fixer runtime.txt || true
 PYTHON_VERSION=$(cat runtime.txt)
 
 # The location of the pre-compiled python binary.
+STACK="heroku-20"
 PYTHON_URL="${S3_BASE_URL}/${STACK}/runtimes/${PYTHON_VERSION}.tar.gz"
 
+if false ; then
 if ! curl --output /dev/null --silent --head --fail --retry 3 --retry-connrefused --connect-timeout 5 "${PYTHON_URL}"; then
   puts-warn "Requested runtime '${PYTHON_VERSION}' is not available for this stack (${STACK})."
   puts-warn "For supported versions, see: https://devcenter.heroku.com/articles/python-support"
   exit 1
+fi
 fi
 
 function warn_eol_python_version() {
@@ -149,6 +152,7 @@ else
   hash -r
 fi
 
+if false ; then
 PIP_VERSION='22.2.2'
 SETUPTOOLS_VERSION='63.4.3'
 WHEEL_VERSION='0.37.1'
@@ -205,5 +209,6 @@ fi
 
 /app/.heroku/python/bin/python "${PIP_WHEEL}/pip" install --quiet --disable-pip-version-check --no-cache \
   "${PIP_WHEEL}" "setuptools==${SETUPTOOLS_VERSION}" "wheel==${WHEEL_VERSION}"
+fi
 
 hash -r
