@@ -296,6 +296,7 @@ set_default_env PYTHONPATH "\$HOME"
 
 # Python expects to be in /app, if at runtime, it is not, set
 # up symlinks… this can occur when the subdir buildpack is used.
+if False; then
 cat <<EOT >> "$PROFILE_PATH"
 if [[ \$HOME != "/app" ]]; then
     mkdir -p /app/.heroku
@@ -313,6 +314,7 @@ if [[ "${BUILD_DIR}" != "/app" ]]; then
   cat <<EOT >> "$PROFILE_PATH"
 find .heroku/python/lib*/*/site-packages/ -type f -and \( -name '*.egg-link' -or -name '*.pth' -or -name '__editable___*_finder.py' \) -exec sed -i -e 's#${BUILD_DIR}#/app#' {} \+
 EOT
+fi
 fi
 
 # Install sane-default script for $WEB_CONCURRENCY and $FORWARDED_ALLOW_IPS.
