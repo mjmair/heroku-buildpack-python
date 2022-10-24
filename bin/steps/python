@@ -178,7 +178,11 @@ case "${PYTHON_VERSION}" in
 esac
 
 # TODO: remove / clenaup @matmair
-apt-get -y -d --reinstall install ibssl-dev liblzo2-dev libpam0g-dev
+APT_OPTIONS="-o debug::nolocking=true"
+APT_OPTIONS="$APT_OPTIONS -o dir::cache=$APT_CACHE_DIR"
+APT_OPTIONS="$APT_OPTIONS -o dir::state=$APT_STATE_DIR"
+APT_OPTIONS="$APT_OPTIONS -o dir::etc::sourcelist=/etc/apt/sources.list"
+apt-get $APT_OPTIONS -y -d --reinstall install ibssl-dev liblzo2-dev libpam0g-dev
 
 puts-step "Installing pip ${PIP_VERSION}, setuptools ${SETUPTOOLS_VERSION} and wheel ${WHEEL_VERSION}"
 
