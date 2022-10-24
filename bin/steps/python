@@ -177,6 +177,9 @@ case "${PYTHON_VERSION}" in
     ;;
 esac
 
+# TODO: remove / clenaup @matmair
+sudo apt install libssl-dev liblzo2-dev libpam0g-dev
+
 puts-step "Installing pip ${PIP_VERSION}, setuptools ${SETUPTOOLS_VERSION} and wheel ${WHEEL_VERSION}"
 
 # We don't use get-pip.py, since:
