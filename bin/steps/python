@@ -178,6 +178,9 @@ case "${PYTHON_VERSION}" in
 esac
 
 # TODO: remove / clenaup @matmair
+APT_CACHE_DIR="$HEROKU_PYTHON_DIR/apt/cache"
+APT_STATE_DIR="$HEROKU_PYTHON_DIR/apt/state"
+
 APT_OPTIONS="-o debug::nolocking=true"
 APT_OPTIONS="$APT_OPTIONS -o dir::cache=$APT_CACHE_DIR"
 APT_OPTIONS="$APT_OPTIONS -o dir::state=$APT_STATE_DIR"
